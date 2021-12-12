@@ -68,7 +68,10 @@ if recalculate:
     vehfmean = np.zeros([ntt,nz])
     pblh,pblh1,pblh2,pblh3 = np.zeros(ntt),np.zeros(ntt),np.zeros(ntt),np.zeros(ntt)
     tsurfmean = np.zeros([ntt])
+    hfxmean = np.zeros([ntt])
+    ustmmean = np.zeros([ntt])
     
+
     pl = ppplot.plot1d() # plot of the boundary layer height time evolution
     
     
@@ -88,12 +91,19 @@ if recalculate:
      geop = geop - np.mean(geop[:,0,:,:])
      print "### --> MARS_TSURF"
      tsurf = pp(file=ff,var="MARS_TSURF").getf()
+     print "### --> HFX"
+     hfx = pp(file=ff,var="HFX").getf()
+     print "### --> USTM"
+     ustm = pp(file=ff,var="USTM").getf()
+
      
      for tt in range(nt):
     
       indt = indt + 1
     
       tsurfmean[indt] = np.mean(tsurf[tt,:,:])
+      hfxmean[indt] = np.mean(hfx[tt,:,:])
+      ustmmean[indt] = np.mean(ustm[tt,:,:])
      
       for zz in range(nz):
         #print tt, indt
@@ -109,7 +119,7 @@ if recalculate:
         vehfmean[indt,zz] = np.mean(tprime*wprime)
         tprimemean[indt,zz] = np.mean(tprime)
         wprimemean[indt,zz] = np.mean(wprime)
-    
+
       ###########
       ## method 1: potential temperature profile
       #diff = np.abs(tmean[indt,2:]-tmean[indt,1])
@@ -168,52 +178,68 @@ if recalculate:
     
     file1=open('pblh1.txt','w')
     for val in pblh1:
-      file1.write("%8.3f\n"%(val))
+      file1.write("%12.5f\n"%(val))
     file1.close()
-    
+
+    file1=open('hfx.txt','w')
+    for val in hfxmean:
+      file1.write("%12.5f\n"%(val))
+    file1.close()
+
+    file1=open('tsurf.txt','w')
+    for val in tsurfmean:
+      file1.write("%12.5f\n"%(val))
+    file1.close()
+
+    file1=open('ustm.txt','w')
+    for val in ustmmean:
+      file1.write("%12.5e\n"%(val))
+    file1.close()
+
+  
     file2=open('pblh2.txt','w')
     for val in pblh2:
-      file2.write("%8.3f\n"%(val))
+      file2.write("%12.5f\n"%(val))
     file2.close()
     
     file3=open('pblh3.txt','w')
     for val in pblh3:
-      file3.write("%8.3f\n"%(val))
+      file3.write("%12.5f\n"%(val))
     file3.close()
     
     file4=open('xaxis.txt','w')
     for val in xaxis:
-      file4.write("%8.3f\n"%(val))
+      file4.write("%12.5f\n"%(val))
     file4.close()
     
     file5=open('pblh.txt','w')
     for val in pblh:
-      file5.write("%8.3f\n"%(val))
+      file5.write("%12.5f\n"%(val))
     file5.close()
     
+    file6=open('vehf.txt','w')
+    file6.write("%i\n"%(ntt))
+    file6.write("%i\n"%(nz))
+    for tt in range(ntt):    
+     for zz in range(nz):
+      file6.write("%12.5e\n"%(vehfmean[tt,zz]))     
+    file6.close()
+
+    file7=open('altitude.txt','w')
+    for val in altitude:
+      file7.write("%12.5f\n"%(val))
+    file7.close()
+
+    file8=open('wmax.txt','w')
+    file8.write("%i\n"%(ntt))
+    file8.write("%i\n"%(nz))
+    for tt in range(ntt):
+     for zz in range(nz):
+      file8.write("%12.5e\n"%(wmax[tt,zz]))
+    file8.close()
+
 
 else:
 
     pass
 
-
-
-#####
-#pl = ppplot.plot2d() # shade of the vertical eddy heat flux time evolution
-#pl.f = np.transpose(vehfmean[:,:])*1e5
-#pl.y = altitude/1000.
-#pl.x = xaxis
-#pl.vmax = 15
-#pl.vmin = -pl.vmax
-#pl.div = 30
-#pl.fmt = '%.0f'
-#pl.ymax = 3.
-#pl.ylabel = "altitude (km)"
-#pl.xlabel = "simulated Titan local time (hours)"
-#pl.nyticks = 10
-#pl.colorbar = "seismic"
-#pl.units = r'10$^{-5}$ K m s$^{-1}$'
-#
-##pl.makeshow()
-#pl.makesave(mode="png",filename="vehf")
-#
