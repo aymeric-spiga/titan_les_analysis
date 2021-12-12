@@ -9,6 +9,8 @@ u = pp()
 #u.file = "BIGLES10m_wind5_USTM_9-11.nc"
 u.file = "/home/aspiga/data/TITAN_LES/HF1.1/wrfout_d01_9999-01-07_00:26:40"
 u.file = "/home/aspiga/data/TITAN_LES/HF1.1/wrfout_d01_9999-01-01_22:13:20"
+u.file = "wrfout_d01_9999-01-07_00:26:40"
+#u.file = "wrfout_d01_9999-01-05_15:06:40"
 u.var = "W"
 u.x = "0,1000"
 u.y = "0,1000"
@@ -36,10 +38,17 @@ for yeah in [tttall]:
   #u.compute = "mean" ; zemean = u.getf()
 
   zemax = np.max(ustm)
+  print zemax
   zemin = np.min(ustm)
   zemean = np.mean(ustm)
 
-  ppplot.figuref(x=4,y=4)
+  ustm = ustm - zemean
+  zemax = np.max(ustm)
+  zemin = np.min(ustm)
+  zemean = np.mean(ustm)
+
+
+  ppplot.figuref(x=6,y=4)
   dval = (zemax-zemin)/100
   bins = np.arange(zemin,zemax,dval)
   hh = mpl.hist(np.ravel(ustm),bins,log=True)
