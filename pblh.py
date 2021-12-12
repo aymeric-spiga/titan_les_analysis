@@ -58,6 +58,6 @@ pl.linestyle = '-'
 pl.marker = ""
 pl.color = "k"
 pl.legend = "3-method average"
-pl.makeshow()
-#pl.makesave(mode="png",filename="pblh")
+#pl.makeshow()
+pl.makesave(mode="png",filename="pblh")
 
