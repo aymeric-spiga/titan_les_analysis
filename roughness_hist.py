@@ -16,26 +16,39 @@ u.x = "0,1000"
 u.y = "0,1000"
 u.z = 3
 
+u.useindex = "1111"
+u.z = 13 #level 500m like Huygen variab in Lavely21
+
+isfric=False
+nnn = 240 #100 #number of grid points minus 1
+
+if isfric:
+    u.var = "USTM"
+
 tttall = "0,1e10"
 
 for yeah in [tttall]:
 #for yeah in ["0"]:
   u.t = yeah
   u.compute = "nothing"
+  u.verbose = True
   ustm = u.getf()
   
-  u.var = "U"
-  uu = u.getf()
-  u.var = "V"
-  vv = u.getf()
-  print uu.shape
-  print vv.shape
-  ustm = np.sqrt(uu[:,:,:,:100]**2 + vv[:,:,:100,:]**2)
-  #ustm = uu[:,:,:,:100]#+vv[:,:,:100,:]
+  if not isfric:
+      u.var = "U"
+      uu = u.getf()
+      u.var = "V"
+      vv = u.getf()
+      print uu.shape
+      print vv.shape
+      ustm = np.sqrt(uu[:,:,:,:nnn]**2 + vv[:,:,:nnn,:]**2)
+      #ustm = uu[:,:,:,:100]#+vv[:,:,:100,:]
+      #u.compute = "max" ; zemax = u.getf()
+      #u.compute = "min" ; zemin = u.getf()
+      #u.compute = "mean" ; zemean = u.getf()
 
-  #u.compute = "max" ; zemax = u.getf()
-  #u.compute = "min" ; zemin = u.getf()
-  #u.compute = "mean" ; zemean = u.getf()
+  dastd = np.std(ustm)
+  print dastd
 
   zemax = np.max(ustm)
   print zemax
@@ -54,8 +67,10 @@ for yeah in [tttall]:
   hh = mpl.hist(np.ravel(ustm),bins,log=True)
   print hh
   mpl.title("$\mu$=%.2f / m=%.2f / M=%.2f" % (zemean,zemin,zemax))
-  #mpl.xlabel('Friction velocity $u_{\star}$ (m s$^{-1}$)')
-  mpl.xlabel('Horizontal wind speed (m s$^{-1}$)')
+  if isfric:
+      mpl.xlabel('Friction velocity $u_{\star}$ (m s$^{-1}$)')
+  else:
+      mpl.xlabel('Horizontal wind speed (m s$^{-1}$)')
   mpl.ylabel('Population')
   ppplot.save(mode="png",filename="roughness_hist")
   ppplot.close()
