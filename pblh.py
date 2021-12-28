@@ -15,7 +15,8 @@ xaxis = np.loadtxt("xaxis.txt")
 #w = pblh < 100. ; pblh[w] = 0.
 
 win=20
-#win=0
+win=0
+win=3
 spblh = ppcompute.smooth1d(pblh,window=win)
 spblh1 = ppcompute.smooth1d(pblh1,window=win)
 sxaxis = ppcompute.smooth1d(xaxis,window=win)
@@ -57,7 +58,7 @@ pl.x = sxaxis
 pl.linestyle = '-'
 pl.marker = ""
 pl.color = "k"
-pl.legend = "3-method average"
+pl.legend = "all-method average"
 #pl.makeshow()
 pl.makesave(mode="png",filename="pblh")
 
