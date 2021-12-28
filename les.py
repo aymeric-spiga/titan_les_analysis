@@ -14,7 +14,7 @@ recalculate = False
 recalculate = True
 
 
-nfilespinup = 2.
+nfilespinup = 4. #2. #apres un certain nombre de fichier plus de memoire
 foutput = 400.
 noutput = 100.
 startlt = 6.
@@ -24,6 +24,7 @@ titanhour = 3600.*16.
 
 
 limpercent = 50.
+limpercent = 30.
 #####
 
 
@@ -125,12 +126,14 @@ if recalculate:
       #diff = np.abs(tmean[indt,2:]-tmean[indt,1])
       #wheremin = np.argmin(diff) + 2
       reft = 0.5*(tsurfmean[indt]+tmean[indt,0]) 
-      reft = tmean[indt,0]
-      diff = np.abs(tmean[indt,1:]-reft)
-      wheremin = np.argmin(diff) + 1
+      iii = 2 #0
+      reft = tmean[indt,iii]
+      diff = np.abs(tmean[indt,iii+1:]-reft)
+      wheremin = np.argmin(diff) + iii
       #print indt, tt
       pblh1[indt] = np.mean(geop[tt,wheremin,:,:]) / grav #Height of the geopotential of the boundary layer
       pblh[indt] = pblh1[indt]
+      print pblh[indt]
       nnn = 1
     
       ###########
@@ -147,9 +150,11 @@ if recalculate:
     
       ###########
       ## method 3: convective motions
-      diff = np.abs(wmax[indt,8:]-np.max(wmax[indt,:]/3.))
-      wheremin = np.argmin(diff) + 8
+      iii = 8
+      diff = np.abs(wmax[indt,iii:]-np.max(wmax[indt,:]/3.))
+      wheremin = np.argmin(diff) + iii
       pblh3[indt] = np.mean(geop[tt,wheremin,:,:]) / grav
+      pblh3[indt] = 0.85*pblh3[indt] ## to account for overshoots
       ## sometimes spurious values caused by GW
       diff = 100.*np.abs(pblh3[indt]-pblh1[indt])/pblh1[indt]
       if diff > limpercent: 
