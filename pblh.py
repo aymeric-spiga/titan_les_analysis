@@ -17,6 +17,7 @@ xaxis = np.loadtxt("xaxis.txt")
 win=20
 win=0
 win=3
+win=5
 spblh = ppcompute.smooth1d(pblh,window=win)
 spblh1 = ppcompute.smooth1d(pblh1,window=win)
 sxaxis = ppcompute.smooth1d(xaxis,window=win)
@@ -30,16 +31,22 @@ spblh3 = ppcompute.smooth1d(pblh3[w],window=win)
 sxaxis3 = ppcompute.smooth1d(xaxis[w],window=win)
 
 ppplot.changefont(12)
-fig = ppplot.figuref(x=12,y=8)
+fig = ppplot.figuref(x=16,y=6)
 pl = ppplot.plot1d(fig=fig) # plot of the boundary layer height time evolution
+##########################
 pl.ymin = 0.
-pl.ymax = 5000.
+pl.ymax = 4750.
+pl.nyticks = 19
+pl.xmin = 7.5
+pl.xmax = 19.4
+pl.nxticks = 24
+##########################
 pl.f = spblh1
 pl.x = sxaxis
 pl.linestyle = ""
 pl.marker = "x"
 pl.ylabel = "PBL mixing height (m)"
-pl.xlabel = "Titan local time (hours)"
+pl.xlabel = "Local time (Titan hours)"
 pl.legend = "potential temperature profile"
 pl.color = "c"
 pl.make()

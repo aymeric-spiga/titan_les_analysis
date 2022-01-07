@@ -14,8 +14,8 @@ recalculate = False
 recalculate = True
 
 
-nfilespinup = 4. #2. #apres un certain nombre de fichier plus de memoire
-foutput = 400.
+nfilespinup = 0. #4. #2. #apres un certain nombre de fichier plus de memoire
+foutput = 400.*3
 noutput = 100.
 startlt = 6.
 titanhour = 3600.*16.

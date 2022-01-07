@@ -17,20 +17,25 @@ for tt in range(nt):
   vehfmean[tt,zz] = yaa[nnn]
 
 ppplot.changefont(12)
-fig = ppplot.figuref(x=12,y=8)
+fig = ppplot.figuref(x=16,y=6)
 pl = ppplot.plot2d(fig=fig) # shade of the vertical eddy heat flux time evolution
 pl.f = np.transpose(vehfmean[:,:])*1e5
 pl.y = altitude #/1000.
 pl.x = xaxis
+##########################
 pl.ymin = 0.
-pl.ymax = 5000.
-pl.vmax = 15 #50 #15
+pl.ymax = 4750.
+pl.nyticks = 19
+pl.xmin = 7.5
+pl.xmax = 19.4
+pl.nxticks = 24
+##########################
+pl.vmax = 12
 pl.vmin = -pl.vmax
-pl.div = 30 #40
+pl.div = 25
 pl.fmt = '%.0f'
 pl.ylabel = "altitude (km)"
-pl.xlabel = "Titan local time (hours)"
-pl.nyticks = 10
+pl.xlabel = "Local time (Titan hours)"
 pl.colorbar = "seismic"
 pl.units = r'10$^{-5}$ K m s$^{-1}$'
 

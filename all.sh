@@ -1,6 +1,6 @@
 #! /bin/bash
 
-./les.py wrfout*
+./les.py ../initial/wrfout*red
 ./pblh.py
 ./vehf.py
 ./wmax.py

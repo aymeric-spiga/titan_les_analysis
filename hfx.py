@@ -14,21 +14,29 @@ for fieldname in ["hfx","tsurf"]:
 
  win=20
  win=0
- win=50
  sfifi = ppcompute.smooth1d(fifi,window=win)
  sxaxis = ppcompute.smooth1d(xaxis,window=win)
  
  ppplot.changefont(12)
- fig = ppplot.figuref(x=12,y=8)
+ fig = ppplot.figuref(x=16,y=4)
  pl = ppplot.plot1d(fig=fig)
- #pl.ymin = 0.
- pl.xmax = 16.
+
+ ##########################
+ pl.xmin = 7.5
+ pl.xmax = 19.4
+ pl.nxticks = 24
+ ##########################
+ pl.ymin = 93.25
+ pl.ymax = 93.85
+ pl.nyticks = 12
+ ##########################
+
  pl.f = sfifi
  pl.x = sxaxis
  pl.linestyle = "-"
  pl.marker = ""
- #pl.ylabel = "Sensible heat flux (ground to atmosphere)"
- pl.xlabel = "Titan local time (hours)"
+ pl.ylabel = "Surface temperature (K)"
+ pl.xlabel = "Local time (Titan hours)"
  pl.color = "b"
  pl.fmt = "%.2f"
  pl.make()
