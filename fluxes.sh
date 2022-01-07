@@ -1,8 +1,8 @@
 #! /bin/bash
 
-#ncrcat -O -v MARS_TSURF,HFX,FLUXSURF_SW,FLUXSURF_LW,FLUXABS_SW,FLXGRD ../initial/wrfout_d01_9999-01-*red FLUXSURF.nc
-#ncwa -O -a south_north,west_east FLUXSURF.nc FLUXSURFave.nc
-#ncap2 -O -s "HFX=-HFX;surfbudget=FLUXSURF_SW+HFX+FLXGRD" FLUXSURFave.nc FLUXSURFavesum.nc
+ncrcat -O -v MARS_TSURF,HFX,FLUXSURF_SW,FLUXSURF_LW,FLUXABS_SW,FLXGRD ../wrfout_d01_9999-01-*red FLUXSURF.nc
+ncwa -O -a south_north,west_east FLUXSURF.nc FLUXSURFave.nc
+ncap2 -O -s "HFX=-HFX;surfbudget=FLUXSURF_SW+HFX+FLXGRD" FLUXSURFave.nc FLUXSURFavesum.nc
 
 pp.py FLUXSURFavesum.nc -x 0 -y 0 --xoffset 6 \
   -v FLUXSURF_SW -v HFX -v FLXGRD -v surfbudget -v FLUXSURF_LW \
