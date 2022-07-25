@@ -16,11 +16,16 @@ recalculate = True
 
 nfilespinup = 0. #4. #2. #apres un certain nombre de fichier plus de memoire
 foutput = 400.*3
+foutput = 400.
 noutput = 100.
 startlt = 6.
+startlt = 4.18
 titanhour = 3600.*16.
 ## 1 Titan day == nearly 16 Earth days
 ## 1 Titan hour == 16/24 Earth days == 3600*24*16/24 == 3600*16
+
+
+titanhour = 57453. #exact from GCM
 
 
 limpercent = 50.
@@ -28,27 +33,11 @@ limpercent = 30.
 #####
 
 
-### constants
-#t0 = 220.
-#p0 = 610.
-#r_cp = 1.0/4.4
-#grav = 3.72
-#R = 192.
-
-#r_cp = 0.28758
-#R = 299.
 
 ### from module_model_constants
 g            = 1.35
-r_d          = 290.6
-cp           = 1051.
 t0           = 94.
-p0           = 1.45e5
-p1000mb      = 1.45e5
-reradius     = 1./2575500.0
-wdaysec      = 1377665.28
 
-r_cp = r_d / cp
 grav = g
 
 
