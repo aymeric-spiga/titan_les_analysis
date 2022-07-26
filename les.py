@@ -128,7 +128,8 @@ if recalculate:
       ###########
       ## method 2: minimum of vertical eddy heat flux
       wheremin = np.argmin(vehfmean[indt,:]) 
-      pblh2[indt] = 1.1*np.mean(geop[tt,wheremin,:,:]) / grav
+      fac = 1. #1.1
+      pblh2[indt] = fac*np.mean(geop[tt,wheremin,:,:]) / grav
       ## sometimes spurious values caused by GW
       diff = 100.*np.abs(pblh2[indt]-pblh1[indt])/pblh1[indt]
       if diff > limpercent: 
