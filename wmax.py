@@ -25,11 +25,11 @@ pl.y = altitude #/1000.
 pl.x = xaxis
 ##########################
 pl.ymin = 0.
-pl.ymax = 4750.
-pl.nyticks = 19
-pl.xmin = 7.5
-pl.xmax = 19.4
-pl.nxticks = 24
+pl.ymax = 4000.
+pl.nyticks = 20
+pl.xmin = 6
+pl.xmax = 20
+pl.nxticks = 14
 ##########################
 pl.vmax = 1.
 pl.vmin = 0.

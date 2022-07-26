@@ -34,12 +34,12 @@ ppplot.changefont(12)
 fig = ppplot.figuref(x=16,y=6)
 pl = ppplot.plot1d(fig=fig) # plot of the boundary layer height time evolution
 ##########################
-pl.ymin = 0.
-pl.ymax = 4750.
-pl.nyticks = 19
-pl.xmin = 7.5
-pl.xmax = 19.4
-pl.nxticks = 24
+#pl.ymin = 0.
+#pl.ymax = 4750.
+#pl.nyticks = 19
+#pl.xmin = 7.5
+#pl.xmax = 19.4
+#pl.nxticks = 24
 ##########################
 pl.f = spblh1
 pl.x = sxaxis
