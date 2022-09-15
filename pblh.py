@@ -14,11 +14,12 @@ xaxis = np.loadtxt("xaxis.txt")
 #w = pblh1 < 100. ; pblh1[w] = 0.
 #w = pblh < 100. ; pblh[w] = 0.
 
-win=200
+win=100
 #win=0
 #win=3
 #win=5
 #win=10
+
 spblh = ppcompute.smooth1d(pblh,window=win)
 sxaxiss = ppcompute.smooth1d(xaxis,window=win)
 win=0
