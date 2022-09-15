@@ -2,7 +2,7 @@
 
 
 pp.py \
- ../wrfout_d01_9999-01-07_11\:33\:21 \
+ wrfout_d01_9999-01-07_22\:40\:00_red \
  --xp 8 --yp 6 -O png \
  -v HFX -o horiz_HFX \
  -t 0 \
@@ -12,7 +12,7 @@ pp.py \
  -N 0 -M 2 -F '%.1f' -D 40 
 
 pp.py \
- ../wrfout_d01_9999-01-07_11\:33\:21 \
+ wrfout_d01_9999-01-07_22\:40\:00_red \
  --xp 8 --yp 6 -O png \
  -v USTM -o horiz_USTM \
  -t 0 \

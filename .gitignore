@@ -5,3 +5,7 @@
 .ipynb*
 wrfout*
 *.nc
+TITANLES100m.branch-les_titan_ref
+fluxsurf.sh
+horiz_HFX.sh
+horiz_USTM.sh
