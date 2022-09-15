@@ -15,8 +15,8 @@ recalculate = True
 
 
 nfilespinup = 0. #4. #2. #apres un certain nombre de fichier plus de memoire
-foutput = 400.*3
-foutput = 400.
+foutput = 400.*3 ## reduced files
+#foutput = 400. ## direct wrfout files
 noutput = 100.
 startlt = 6.
 startlt = 4.18
