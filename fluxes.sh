@@ -14,7 +14,8 @@ pp.py FLUXSURFavesum.nc -x 0 -y 0 \
   --ylabel 'W m$^{-2}$' \
   -L '-' -L '-' -L '-' -L '--' -L '-' \
   -E '$\Phi_{SW}$' -E '$-H_s$' -E '$G$' -E '$\Phi_{SW}-H_s+G$' \
-  --ymin -2 --ymax 2 --nyticks 18 \
+  --ymin -2 --ymax 2 --nyticks 20 \
+  --xmin 6 --xmax 24 --nxticks 20 \
   --xp 12 --yp 6 \
   -O png -o fluxsurf
 

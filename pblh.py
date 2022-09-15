@@ -14,11 +14,14 @@ xaxis = np.loadtxt("xaxis.txt")
 #w = pblh1 < 100. ; pblh1[w] = 0.
 #w = pblh < 100. ; pblh[w] = 0.
 
-win=20
-win=0
-win=3
-win=5
+win=200
+#win=0
+#win=3
+#win=5
+#win=10
 spblh = ppcompute.smooth1d(pblh,window=win)
+sxaxiss = ppcompute.smooth1d(xaxis,window=win)
+win=0
 spblh1 = ppcompute.smooth1d(pblh1,window=win)
 sxaxis = ppcompute.smooth1d(xaxis,window=win)
 
@@ -31,15 +34,15 @@ spblh3 = ppcompute.smooth1d(pblh3[w],window=win)
 sxaxis3 = ppcompute.smooth1d(xaxis[w],window=win)
 
 ppplot.changefont(12)
-fig = ppplot.figuref(x=16,y=6)
+fig = ppplot.figuref(x=12,y=8) ## 16 6
 pl = ppplot.plot1d(fig=fig) # plot of the boundary layer height time evolution
 ##########################
-#pl.ymin = 0.
-#pl.ymax = 4750.
-#pl.nyticks = 19
-#pl.xmin = 7.5
-#pl.xmax = 19.4
-#pl.nxticks = 24
+pl.ymin = 0.
+pl.ymax = 3200.
+pl.nyticks = 32
+pl.xmin = 6
+pl.xmax = 24
+pl.nxticks = 20
 ##########################
 pl.f = spblh1
 pl.x = sxaxis
@@ -49,6 +52,7 @@ pl.ylabel = "PBL mixing height (m)"
 pl.xlabel = "Local time (Titan hours)"
 pl.legend = "potential temperature profile"
 pl.color = "c"
+#pl.modx = 24
 pl.make()
 pl.f = spblh2
 pl.x = sxaxis2
@@ -61,11 +65,11 @@ pl.legend = "plumes' vertical velocities"
 pl.color = "y"
 pl.make()
 pl.f = spblh
-pl.x = sxaxis
+pl.x = sxaxiss
 pl.linestyle = '-'
 pl.marker = ""
 pl.color = "k"
-pl.legend = "all-method average"
+pl.legend = "all-method average (smoothed)"
 #pl.makeshow()
 pl.makesave(mode="png",filename="pblh")
 
