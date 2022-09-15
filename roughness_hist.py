@@ -9,7 +9,7 @@ u = pp()
 #u.file = "BIGLES10m_wind5_USTM_9-11.nc"
 u.file = "/home/aspiga/data/TITAN_LES/HF1.1/wrfout_d01_9999-01-07_00:26:40"
 u.file = "/home/aspiga/data/TITAN_LES/HF1.1/wrfout_d01_9999-01-01_22:13:20"
-u.file = "wrfout_d01_9999-01-07_00:26:40"
+u.file = "../wrfout_d01_9999-01-07_00:26:40"
 #u.file = "wrfout_d01_9999-01-05_15:06:40"
 u.var = "W"
 u.x = "0,1000"
@@ -20,7 +20,6 @@ u.useindex = "1111"
 u.z = 13 #level 500m like Huygen variab in Lavely21
 
 isfric=False
-nnn = 240 #100 #number of grid points minus 1
 
 if isfric:
     u.var = "USTM"
@@ -35,12 +34,14 @@ for yeah in [tttall]:
   ustm = u.getf()
   
   if not isfric:
+      ## approximate: for real we would need to unstagger
       u.var = "U"
       uu = u.getf()
       u.var = "V"
       vv = u.getf()
       print uu.shape
       print vv.shape
+      nnn = uu.shape[2]
       ustm = np.sqrt(uu[:,:,:,:nnn]**2 + vv[:,:,:nnn,:]**2)
       #ustm = uu[:,:,:,:100]#+vv[:,:,:100,:]
       #u.compute = "max" ; zemax = u.getf()
@@ -48,10 +49,10 @@ for yeah in [tttall]:
       #u.compute = "mean" ; zemean = u.getf()
 
   dastd = np.std(ustm)
-  print dastd
+  #print dastd
 
   zemax = np.max(ustm)
-  print zemax
+  #print zemax
   zemin = np.min(ustm)
   zemean = np.mean(ustm)
 
