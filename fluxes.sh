@@ -1,6 +1,6 @@
 #! /bin/bash
 
-ncrcat -O -v MARS_TSURF,HFX,FLUXSURF_SW,FLUXSURF_LW,FLUXABS_SW,FLXGRD wrfout_d01_9999-01-* FLUXSURF.nc
+ncrcat -O -v MARS_TSURF,HFX,FLUXSURF_SW,FLUXSURF_LW,FLUXABS_SW,FLXGRD wrfout_d01_9999-01-*red FLUXSURF.nc
 ncwa -O -a south_north,west_east FLUXSURF.nc FLUXSURFave.nc
 ncap2 -O -s "HFX=-HFX;surfbudget=FLUXSURF_SW+HFX+FLXGRD" FLUXSURFave.nc FLUXSURFavesum.nc
 
@@ -10,7 +10,7 @@ pp.py FLUXSURFavesum.nc -x 0 -y 0 \
   -Q orange -Q blue -Q green -Q magenta \
   -F '%.1f' \
   -S -K '' \
-  --xcoeff 0.00695 --xlabel 'Local time (Titan hours)' \
+  --xcoeff 0.02085 --xlabel 'Local time (Titan hours)' \
   --ylabel 'W m$^{-2}$' \
   -L '-' -L '-' -L '-' -L '--' -L '-' \
   -E '$\Phi_{SW}$' -E '$-H_s$' -E '$G$' -E '$\Phi_{SW}-H_s+G$' \
@@ -19,7 +19,7 @@ pp.py FLUXSURFavesum.nc -x 0 -y 0 \
   --xp 12 --yp 6 \
   -O png -o fluxsurf
 
-# 0.00695
+# 0.00695 if direct files
 #--xmin 7.5 --xmax 19.4 --nxticks 12 \
 
 # -v FLUXSURF_LW -Q red -E '$\Phi_{LW}$'
