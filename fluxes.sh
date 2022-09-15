@@ -1,6 +1,6 @@
 #! /bin/bash
 
-ncrcat -O -v MARS_TSURF,HFX,FLUXSURF_SW,FLUXSURF_LW,FLUXABS_SW,FLXGRD ../wrfout_d01_9999-01-* FLUXSURF.nc
+ncrcat -O -v MARS_TSURF,HFX,FLUXSURF_SW,FLUXSURF_LW,FLUXABS_SW,FLXGRD wrfout_d01_9999-01-* FLUXSURF.nc
 ncwa -O -a south_north,west_east FLUXSURF.nc FLUXSURFave.nc
 ncap2 -O -s "HFX=-HFX;surfbudget=FLUXSURF_SW+HFX+FLXGRD" FLUXSURFave.nc FLUXSURFavesum.nc
 
